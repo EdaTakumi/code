@@ -33,7 +33,7 @@ def my_vis(flow):
     hsv[..., 2] = 255
     my_flow_color = cv.cvtColor(hsv, cv.COLOR_HSV2RGB)
     my_flow_color = cv.cvtColor(my_flow_color, cv.COLOR_BGR2RGB)
-    
+
     return my_flow_color
 
 
@@ -51,6 +51,17 @@ def DrawVector(flow, figsize, per_pixel=20):
     plt.ylim([0, height])
     plt.show()
 
+
+# 座標が格納された行列の作成
+def coordinateMat(size):
+    coord_x = np.zeros(size, dtype = np.float32)
+    coord_y = np.zeros(size, dtype = np.float32)
+    for y in range(0, size[0], 1):
+        for x in range(0, size[1], 1):
+            coord_x[y][x] = x
+            coord_y[y][x] = y
+            
+    return coord_x, coord_y
 
 
 if __name__ == '__main__':

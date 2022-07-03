@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 
 # 静止画から動画像を作成
-def MakeMovie(size, input_path, output_path, fps=5):
+def makeMovie(size, input_path, output_path, fps=5):
     pic_data = glob.glob(input_path)
     fourcc = cv.VideoWriter_fourcc('m','p','4','v')
     save = cv.VideoWriter(output_path, fourcc, fps, size)
@@ -38,7 +38,7 @@ def my_vis(flow):
 
 
 # floファイルの可視化（ベクトル）
-def DrawVector(flow, figsize, per_pixel=20):
+def drawVector(flow, figsize, per_pixel=20):
     height, width = flow.shape[0], flow.shape[1]
     plt.figure(figsize = figsize)
 
@@ -65,5 +65,5 @@ def coordinateMat(size):
 
 
 if __name__ == '__main__':
-    flow = cv.readOpticalFlow("C:\\dataset\\scene-flow\\MPI-Sintel\\MPI-Sintel-complete\\training\\flow\\alley_1\\frame_0001.flo")
-    DrawVector(flow, (15.36, 6.54))
+    flow = cv.readOpticalFlow("C:/datasets/MPI-Sintel/MPI-Sintel-complete/training/flow/alley_1/frame_0001.flo")
+    drawVector(flow, (15.36, 6.54))

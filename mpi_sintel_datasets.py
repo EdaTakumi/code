@@ -7,6 +7,7 @@ import os
 import glob
 import cv2 as cv
 
+
 def load_data():
     # pathの入力
     train_path = 'C:/datasets/MPI-Sintel/MPI-Sintel-complete/training/'
@@ -83,7 +84,6 @@ def load_data():
         test_flow = cv.readOpticalFlow(test_flow_path)
         test_flows.append(test_flow)
     
-
 
     return train_pairs, train_flows, test_pairs, test_flows
 

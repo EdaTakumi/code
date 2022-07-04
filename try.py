@@ -36,11 +36,11 @@ def load_data():
 
             train_pair = []
 
-            train_first_img = cv.imread(train_first_img_path)
-            train_pair.append(train_first_img)
+            # train_first_img = cv.imread(train_first_img_path)
+            train_pair.append(train_first_img_path)
 
-            train_second_img = cv.imread(train_second_img_path)
-            train_pair.append(train_second_img)
+            # train_second_img = cv.imread(train_second_img_path)
+            train_pair.append(train_second_img_path)
 
             train_pairs.append(train_pair)
 
@@ -56,11 +56,11 @@ def load_data():
 
             test_pair = []
 
-            test_first_img = cv.imread(test_first_img_path)
-            test_pair.append(test_first_img)
+            # test_first_img = cv.imread(test_first_img_path)
+            test_pair.append(test_first_img_path)
 
-            test_second_img = cv.imread(test_second_img_path)
-            test_pair.append(test_second_img)
+            # test_second_img = cv.imread(test_second_img_path)
+            test_pair.append(test_second_img_path)
 
             test_pairs.append(test_pair)
 
@@ -72,23 +72,28 @@ def load_data():
     train_flow_paths = glob.glob(train_path + 'flow/*/*.flo')
     for i in range(len(train_flow_paths)):
         train_flow_path = train_flow_paths[i]
-        train_flow = cv.readOpticalFlow(train_flow_path)
-        train_flows.append(train_flow)
-
+        # train_flow = cv.readOpticalFlow(train_flow_path)
+        train_flows.append(train_flow_path)
+    
 
     test_flows = []
 
     test_flow_paths = glob.glob(test_path + 'flow/*/*.flo')
     for i in range(len(test_flow_paths)):
         test_flow_path = test_flow_paths[i]
-        test_flow = cv.readOpticalFlow(test_flow_path)
-        test_flows.append(test_flow)
-    
+        # test_flow = cv.readOpticalFlow(test_flow_path)
+        test_flows.append(test_flow_path)
+
 
     return train_pairs, test_pairs, train_flows, test_flows
 
 
 
 if __name__ == '__main__':
-    x_train, x_test, t_train, t_test = load_data()
+    x_train, x_test, t_train = load_data()
     
+    print(x_train[-1])
+    print(len(x_train))
+
+    print(t_train[-1])
+    print(len(t_train))

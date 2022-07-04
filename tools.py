@@ -5,7 +5,7 @@ import glob
 import matplotlib.pyplot as plt
 
 
-# 静止画から動画像を作成
+# make movie from images
 def makeMovie(size, input_path, output_path, fps=5):
     pic_data = glob.glob(input_path)
     fourcc = cv.VideoWriter_fourcc('m','p','4','v')
@@ -23,8 +23,7 @@ def makeMovie(size, input_path, output_path, fps=5):
 
     save.release()
 
-
-# floファイルの可視化（カラー）
+# visualization of flow (color)
 def my_vis(flow):
     mag, ang = cv.cartToPolar(flow[..., 0], flow[..., 1])
     hsv = np.zeros((flow.shape[0], flow.shape[1], 3), dtype=np.uint8)
@@ -37,7 +36,7 @@ def my_vis(flow):
     return my_flow_color
 
 
-# floファイルの可視化（ベクトル）
+# visualization of flow (vector)
 def drawVector(flow, figsize, per_pixel=20):
     height, width = flow.shape[0], flow.shape[1]
     plt.figure(figsize = figsize)
@@ -52,7 +51,7 @@ def drawVector(flow, figsize, per_pixel=20):
     plt.show()
 
 
-# 座標が格納された行列の作成
+# make coordinateMat
 def coordinateMat(size):
     coord_x = np.zeros(size, dtype=np.float32)
     coord_y = np.zeros(size, dtype=np.float32)

@@ -9,7 +9,7 @@ import cv2 as cv
 
 
 def load_data():
-    # pathの入力
+    # input path
     train_path = 'C:/datasets/MPI-Sintel/MPI-Sintel-complete/training/'
 
     train_titles = ['alley_1', 'alley_2', 'ambush_2', 'ambush_4', 'ambush_5', 'ambush_6', 'ambush_7',
@@ -25,7 +25,7 @@ def load_data():
 
 
 
-    # 連続フレーム２組の画像
+    # image pairs
     train_pairs = []
 
     for title in train_titles:
@@ -66,7 +66,7 @@ def load_data():
 
 
 
-    # 正解データ（オプティカルフロー）
+    # optical flow
     train_flows = []
 
     train_flow_paths = glob.glob(train_path + 'flow/*/*.flo')
@@ -91,4 +91,3 @@ def load_data():
 
 if __name__ == '__main__':
     x_train, x_test, t_train, t_test = load_data()
-    

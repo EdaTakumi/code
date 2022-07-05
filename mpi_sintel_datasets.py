@@ -26,69 +26,77 @@ def load_data():
 
 
     # image pairs
-    train_pairs = []
+    train_first_imgs = np.empty(0)
+    train_second_imgs = np.empty(0)
 
     for title in train_titles:
         train_img_paths = glob.glob(train_path + 'final/' + title + '/*.png')
-        for i in range(len(train_img_paths)-1):
-            train_first_img_path = train_img_paths[i]
-            train_second_img_path = train_img_paths[i+1]
 
-            train_pair = []
+        train_imgs = np.empty(0)
 
-            train_first_img = cv.imread(train_first_img_path)
-            train_pair.append(train_first_img)
+        for i in range(len(train_img_paths)):
+            train_img = cv.imread(train_img_paths[i])
+            train_img = cv.cvtColor(train_img, cv.COLOR_BGR2GRAY)
 
-            train_second_img = cv.imread(train_second_img_path)
-            train_pair.append(train_second_img)
+            train_imgs = np.append(train_imgs, train_img)
+        
+        for i in range(len(train_imgs)-1):
 
-            train_pairs.append(train_pair)
+            train_first_img = train_imgs[i]
+            train_first_imgs = np.append(train_first_imgs, train_first_img)
+
+            train_second_img = train_imgs[i+1]
+            train_second_imgs = np.append(train_second_imgs, train_second_img)
 
     
 
-    test_pairs = []
+    test_first_imgs = np.empty(0)
+    test_second_imgs = np.empty(0)
 
     for title in test_titles:
         test_img_paths = glob.glob(test_path + 'final/' + title + '/*.png')
-        for i in range(len(test_img_paths)-1):
-            test_first_img_path = test_img_paths[i]
-            test_second_img_path = test_img_paths[i+1]
 
-            test_pair = []
+        test_imgs = np.empty(0)
 
-            test_first_img = cv.imread(test_first_img_path)
-            test_pair.append(test_first_img)
+        for i in range(len(test_img_paths)):
+            test_img = cv.imread(test_img_paths[i])
+            test_img = cv.cvtColor(test_img, cv.COLOR_BGR2GRAY)
 
-            test_second_img = cv.imread(test_second_img_path)
-            test_pair.append(test_second_img)
+            test_imgs = np.append(test_imgs, test_img)
+        
+        for i in range(len(test_imgs)-1):
 
-            test_pairs.append(test_pair)
+            test_first_img = test_imgs[i]
+            test_first_imgs = np.append(test_first_imgs, test_first_img)
+
+            test_second_img = test_imgs[i+1]
+            test_second_imgs = np.append(test_second_imgs, test_second_img)
 
 
 
     # optical flow
-    train_flows = []
+    train_flows = np.empty(0)
 
     train_flow_paths = glob.glob(train_path + 'flow/*/*.flo')
     for i in range(len(train_flow_paths)):
         train_flow_path = train_flow_paths[i]
         train_flow = cv.readOpticalFlow(train_flow_path)
-        train_flows.append(train_flow)
+        train_flows = np.append(train_flows, train_flow)
 
 
-    # test_flows = []
+    # test_flows = np.empty(0)
 
     # test_flow_paths = glob.glob(test_path + 'flow/*/*.flo')
     # for i in range(len(test_flow_paths)):
     #     test_flow_path = test_flow_paths[i]
     #     test_flow = cv.readOpticalFlow(test_flow_path)
-    #     test_flows.append(test_flow)
+    #     test_flows = np.append(test_flows, test_flow)
     
 
-    # return train_pairs, test_pairs, train_flows, test_flows
-    return train_pairs, test_pairs, train_flows
+    return train_first_imgs, train_second_imgs, test_first_imgs, test_second_imgs, train_flows
 
 
 
 if __name__ == '__main__':
-    x_train, x_test, t_train = load_data()
+    train_first_imgs, train_second_imgs, test_first_imgs, test_second_imgs, train_flows = load_data()
+

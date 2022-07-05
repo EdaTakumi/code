@@ -1,11 +1,11 @@
 from PIL import Image
+import cv2 as cv
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import OneHotEncoder
 import pandas as pd
 import os
 import glob
-import cv2 as cv
 
 
 def load_data():
@@ -76,18 +76,19 @@ def load_data():
         train_flows.append(train_flow)
 
 
-    test_flows = []
+    # test_flows = []
 
-    test_flow_paths = glob.glob(test_path + 'flow/*/*.flo')
-    for i in range(len(test_flow_paths)):
-        test_flow_path = test_flow_paths[i]
-        test_flow = cv.readOpticalFlow(test_flow_path)
-        test_flows.append(test_flow)
+    # test_flow_paths = glob.glob(test_path + 'flow/*/*.flo')
+    # for i in range(len(test_flow_paths)):
+    #     test_flow_path = test_flow_paths[i]
+    #     test_flow = cv.readOpticalFlow(test_flow_path)
+    #     test_flows.append(test_flow)
     
 
-    return train_pairs, test_pairs, train_flows, test_flows
+    # return train_pairs, test_pairs, train_flows, test_flows
+    return train_pairs, test_pairs, train_flows
 
 
 
 if __name__ == '__main__':
-    x_train, x_test, t_train, t_test = load_data()
+    x_train, x_test, t_train = load_data()

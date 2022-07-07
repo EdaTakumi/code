@@ -1,10 +1,5 @@
-from PIL import Image
 import cv2 as cv
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import OneHotEncoder
-import pandas as pd
-import os
 import glob
 
 
